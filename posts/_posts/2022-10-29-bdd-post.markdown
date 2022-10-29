@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Behavior Driven Development - the real meaning"
+date:   2022-10-29 20:15:46 +0200
+tags: BDD
+---
+
+Hi,
+
+Recently I was talking in my company about Behavior Driven Development in unit tests. 
+
+Some peoples think it is for e2e hehehe ;) 
+
+Using that is obligatory when you want to build a good piece of software. Check out my [BDD article]({% post_url /articles/2022-10-29-bdd %})

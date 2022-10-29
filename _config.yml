@@ -20,13 +20,14 @@
 
 title: Jakub Samczuk blog
 email: jakub@samcz.uk
+linkedin_username: jakub-samczuk-4346a283
 description: >- # this means to ignore newlines until "baseurl:"
   IT blog about programming, architecture and soft skills
   
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
-github_username:  cieszlunek
+# github_username:  cieszlunek
 
 # Build settings
 theme: minima
