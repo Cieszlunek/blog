@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hello wordl!"
+title:  "Hello world!"
 date:   2022-10-28 20:15:46 +0200
 ---
 
