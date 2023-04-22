@@ -4,10 +4,10 @@ title:  "Hello world!"
 date:   2022-10-28 20:15:46 +0200
 ---
 
-Welcome on my page :)
+Welcome to my page! :)
 
-You will find here my blogposts (hah you are now reading one of them :D). I'm also writing here articles. I'm not going to update my posts, so once you read them you can assume that you will not find anything else in the same post. On the other hand, I'm going to actualize my articles. I'll inform about those changes in separate posts.
+Here you will find my blog posts (and, well, you are reading one of them now :D). I also write articles that I'll keep updating as needed. Once you read a blog post, you can assume that it won't be updated again.
 
-I'm programmer, so I'm going to write about programming stuff. I'm going to share with you my knowledge and good practices on how to build easy to maintain, high quality product. And I'm not going to focus only on technical skills here. It is hard to build ideal product in nonfunctional team.
+As a programmer, I'll be sharing my knowledge and best practices on how to build a high-quality product that's easy to maintain. However, I won't just focus on technical skills, since it's tough to build an ideal product in a dysfunctional team.
 
-My motivation to run this page is that I'll have time and space to collect my thoughts. I enjoy learning from peoples who are sharing their knowledge online for free. It's time to give something from me to the internet. Someday maybe I'll turn on ads on this page and earn some money hehe
+I'm motivated to run this page because it gives me time and space to collect my thoughts. I enjoy learning from people who share their knowledge online for free, and now it's time for me to give something back to the internet.

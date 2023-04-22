@@ -7,8 +7,6 @@ tags: BDD
 
 Hi,
 
-Recently I was talking in my company about Behavior Driven Development in unit tests. 
+Recently, I was teaching about Behavior Driven Development in unit tests my colleagues at work. 
 
-Some peoples think it is for e2e hehehe ;) 
-
-Using that is obligatory when you want to build a good piece of software. Check out my [BDD article]({% post_url /articles/2022-10-29-bdd %})
+Some people mistakenly believe that it is only for end-to-end testing. However, using it is essential if you want to create high-quality software. Please check out my work: [BDD article]({% post_url /articles/2022-10-29-bdd %})
