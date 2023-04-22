@@ -7,14 +7,12 @@ tags: BDD TDD module projet_unicorn
 
 # Behavior Driven Development - introduction
 
-As Dave Farley (one of BDD inventors) [said](https://www.youtube.com/watch?v=Bq_oz7nCNUA) that his team was teaching TDD and many of their students were making the same mistakes. Those mistakes were made because of misunderstanding the idea stands behind TDD. That was the spark to invent BDD - to make peoples do not make those mistakes. To understand what BDD is and to understand the idea hidden behind those buzzwords we need first talk about TDD. I will show you how BDD arises from TDD. 
+As Dave Farley, one of the inventors of BDD, [has said](https://www.youtube.com/watch?v=Bq_oz7nCNUA), his team was teaching TDD, but many of their students were making the same mistakes due to a misunderstanding of the underlying ideas behind TDD. This sparked the invention of BDD to prevent people from making those mistakes. To understand what BDD is and the idea behind those buzzwords, we first need to talk about TDD. I'll show you how BDD arises from TDD.
 
 ![hehehe](/images/bdd/bdd-tdd.png)
 
 # Test Driven Development 
-Some peoples do not use TDD, which for sure is not something momentary in software engineering history.
-Many developers have drawn on this idea over the centuries. 2 centuries so far. Kent Beck, the guy who is famous of writing a book about TDD, said that he just rediscovered it. 
-Just imagine, that on the first software engineering conference ever folks were talking that best software is developed when you repeat the cycle: write test, write minimum code to satisfy test, refactor.
+Some people do not use TDD, which has been a part of software engineering history for over centuries (two centuries so far). Kent Beck, who is famous for writing a book about TDD, said that he simply rediscovered the idea. Imagine that at the first-ever software engineering conference, people were already discussing how the best software is developed when you repeat the cycle of writing a test, writing minimum code to satisfy the test, and refactoring.
 
 Some peoples are writing unit tests after they write the code, but is important to write unit tests, right? ... good!
 
@@ -24,72 +22,73 @@ Worse if developer after writing the code goes on holidays. Then he comes back "
 
 But worst if developer after writing the code dies unexpectedly and someone else must write those unit tests.
 
-The other problem with this approach is that written code is not meant to be testable. Developer focus on how solve problem, not how to write a unit test for solution. This leads to situation when testing may be tricky. You probably need to experience this to understand it.
-On the other hand, specifying what test should verify may be tricky too.
+Here's a corrected version:
 
-Look what benefits you can get while using TDD approach:
-- code is testable - because you are writing code to satisfy tests
-- you don't have to manually test it during writing
-- you can safely refactor your code while implementing
+The other problem with this approach is that the written code is not meant to be testable. The developer focuses on how to solve the problem, not how to write a unit test for the solution. This leads to a situation where testing may be tricky. You probably need to experience this to understand it.
 
-But somehow some peoples still don't use it. Is it so good?
-Nowadays, for many peoples TDD stands only for "test first". Those peoples, while trying to apply this approach, are writing unit tests for every class across their functionality. If all pieces alone work as expected, and tests are good, then whole functionality works properly. 
-The real problem with this approach is strong binding between code and tests. In the most cases if the code change, tests must be changed too. This is a nightmare 
- - it slows down changes, 
- - prevent refactoring, 
- - slow down new functionalities. 
- - Even worse - it can lead to having bugs in tests - and then our code will work not properly
-Because it is preventing refactoring, it usually leads to poorly designed applications.
+On the other hand, specifying what the test should verify may be tricky too.
 
-As Dave Farley noticed, those problems are not directly connected with TDD. We can and should use TDD in the way which does not cause those problems. How? Don't test classes. Instead, test modules.
+Look at what benefits you can get while using the TDD approach:
+- Code is testable because you are writing code to satisfy tests.
+- You don't have to manually test it during writing.
+- You can safely refactor your code while implementing.
+
+But somehow some people still don't use it. Is it so good? Nowadays, for many people, TDD stands only for "test first." Those people, while trying to apply this approach, are writing unit tests for every class across their functionality. If all pieces work as expected, and tests are good, then the whole functionality works properly.
+
+The real problem with this approach is the strong binding between code and tests. In most cases, if the code changes, tests must be changed too. This is a nightmare because it slows down changes, prevents refactoring, slows down new functionalities, and even worse, it can lead to having bugs in tests, and then our code will not work properly. Because it prevents refactoring, it usually leads to poorly designed applications.
+
+As Dave Farley noticed, these problems are not directly connected with TDD. We can and should use TDD in a way that does not cause these problems. How? Don't test classes. Instead, test modules.
 
 # Module
 
-And what is a module then?
-Every Software Engineering guru has his own definition of module. I especially like [Jakub Nabrdalik](https://nabrdalik.dev/) definition.
-1.	module has strong encapsulation. It means that it hides their whole state. You can change his state only by interacting with this module - only via its public API. And, if necessary, module has its own DB - also hidden! You can't write / read from its database. Your tests neither
-4.	module has all layers - if we consider MVC architecture pattern here, then module have all things, including frontend layer
-5.	SRP & communicate with other modules – IMO these two are connected, so I write them as one point here. If module is doing a lot of things and grow big, then probably it became monolith. This should be divided into separate modules, which are talking with each other. Module should do one thing and do it well
-6.	module is candidate for microservice
+Here is the corrected text:
 
-Here is how I define modules:
+And what is a module then? Every software engineering guru has his own definition of a module. I especially like Jakub Nabrdalik's definition:
+
+1. A module has strong encapsulation, meaning that it hides its entire state. You can only change its state by interacting with the module via its public API. If necessary, the module has its own database - which is also hidden. You cannot read or write from its database, and neither can your tests.
+
+2. A module has all layers - if we consider the MVC architecture pattern here, then the module has everything, including the frontend layer.
+
+3. A module follows the Single Responsibility Principle (SRP) and communicates with other modules. In my opinion, these two are connected, so I write them as one point here. If a module does a lot of things and grows too big, it becomes a monolith. This should be divided into separate modules that communicate with each other. A module should do one thing and do it well.
+
+4. A module is a candidate for a microservice.
+
+Here is how I implement modules:
 
 <img style="float: right;" src="/images/bdd/module.png">
 
-1. Unit test is praying to configuration class asking to materialize ice mountain module. He must give in sacrifice mocks of modules used by ice mountain module. 
-2. Configuration class create Ice mountain module. 
-3. Test code approach the module, he sees only public API which is made of facade class altogether with DTOs. Everything else is hidden. 
+1. The unit test prays to the configuration class, requesting the materialization of the Ice Mountain module, and offering mocks of the modules used by it as sacrifice.
+2. The configuration class creates the Ice Mountain module.
+3. The test code approaches the module, only seeing its public API, which is comprised of a facade class and DTOs, with everything else hidden.
 
-Why there is unit test boat on the picture? Because we start defining module from writing unit test. In that way we will “discover” our module interface. While implementing the code to satisfy tests, we will write business code for our module.
+Why is there a unit test boat in the picture? Because we start by defining the module through writing a unit test. This way, we will "discover" the module's interface, and while implementing the code to satisfy the tests, we will write the business code for our module.
 
-Facade class is the module entrypoint. It defines public API. Its public methods return types and arguments are DTO classess. You don't have to wrap String / Long inside DTO classess if you don't need to.
+The facade class serves as the module's entry point, defining its public API. The public methods of the facade class return types and arguments in the form of DTO classes. However, there's no need to wrap Strings or Longs inside DTO classes if it's unnecessary.
 
-What with DAO layer? Unit test ship need a fast instance of module. Fast, means no IO. So, it should for example give module instance with in-memory DAO, without reading files, and so on. No IO. Persistence layer shouldn’t be implemented here. The interesting case is when we want to implement our microservice which use other microservices REST API. To not disturb our flow, I’ll describe my solution later<sup>[See appendix 1](#how-define-http-calls-between-microservices-in-bdd-tests)</sup>.
+What about the DAO layer? The unit test boat needs a fast instance of the module, one that doesn't involve I/O. For example, it could provide a module instance with an in-memory DAO, without reading files, and so on. The persistence layer should not be implemented here. In the case where we want to implement our microservice that uses other microservices' REST APIs, I'll describe my solution later<sup>[See Appendix 1](#how-define-http-calls-between-microservices-in-bdd-tests)</sup>.
 
 # BDD
-Because we can't access internal state of the module, we can only test its behavior. It is very important sentence, because it is fundament of the Behavior Driven Development.
-We are threating our module as black box, because it is a black box - everything important is hidden. In the tests we don't care how things are done, we are verifying if the module behaves as we expect.
-In this approach we just can't make those mistakes that we were talking before.
+Here's a suggested revision for grammar and clarity:
 
-Unit tests need to change only if modules public API changes. If everything else change - tests are the same. If you change anything not related to business behavior and any of unit test must change – something is wrong. You have broken one of the principles. Step back and find what went wrong – you will learn from this. And then you can write article about what you have discovered ;)
+Because we cannot access the internal state of the module, we can only test its behavior. This is a crucial aspect of Behavior Driven Development, as we treat our module as a black box, since everything important is hidden. In the tests, we are not concerned with how things are done; we only verify if the module behaves as expected. With this approach, we cannot make the mistakes we previously discussed.
 
-Do you want to refactor whole module - go on, homeboy!
-New functionality? No problem, we will care that you don't break anything.
-Changes? Change the behavior in tests and make it green again
+Unit tests only need to change if the module's public API changes. If anything else changes, the tests remain the same. If you change anything that is unrelated to business behavior, and any of the unit tests must change, something is amiss. Step back and identify what went wrong so that you can learn from the experience. Then you can write an article about your findings ;)
+
+If you want to refactor the entire module, go ahead! If you need to add new functionality, we will make sure that you do not break anything. If you need to make changes, modify the behavior in the tests and make it pass again.
 
 # BDD and end to end testing
-Nowadays, many peoples identify BDD with e2e testing, or with acceptance testing. If you google BDD then you will see articles about e2e frameworks. Why? Because they threat applications as black boxes. 
 
-But does it is still BDD? Do they first write behavioral test and then develop code? Of course, we can use this approach and there is nothing wrong having your development driven by behavioral e2e tests. But e2e tests are slow! If you will execute them frequently then your efficiency will for sure decrease. Even worse, peoples may stop using those tests in the development TDD cycle, and there will be no BDD anymore. Moreover, the resulting code probably will be mix of business logic and infrastructure code. It could lead to strong binding your business code with used frameworks. It is bad. There is nothing wrong with writing couple of those tests at the beginning to drive your initial development if you don't know how to start or due to other reasons. And you could still do BDD here, but please consider stopping at some point and moving to the unit tests with your work. 
+Nowadays, many people identify BDD with end-to-end testing or acceptance testing. If you Google BDD, you will see articles about end-to-end frameworks. But is it still BDD? Do they first write behavioral tests and then develop code? Of course, we can use this approach, and there is nothing wrong with having your development driven by behavioral end-to-end tests. But end-to-end tests are slow! If you execute them frequently, your efficiency will surely decrease. Even worse, people may stop using those tests in the development TDD cycle, and there will be no BDD anymore. Moreover, the resulting code probably will be a mix of business logic and infrastructure code, which could lead to strong binding of your business code with used frameworks. It is bad. There is nothing wrong with writing a few of those tests at the beginning to drive your initial development if you don't know how to start or due to other reasons. And you could still do BDD here, but please consider stopping at some point and moving to the unit tests with your work.
 
-Don’t focus on separating your business logic from infrastructure code. Work in that way which separates them. It's one thing less to care about.
+Don’t focus on separating your business logic from infrastructure code. Work in a way that separates them. It's one less thing to worry about.
 
 # Don't back to TDD
-Peoples named that usage of TDD as BDD. They also made some changes to avoid "going back to TDD" here.
- - We are not saying we are writing test. We are writing the specification.
- - We are not testing the code, we are confirming its behavior.
- - We don't have much freedom in test structure, we build tests around "given, when, then" keywords
- - And IMO the clue, our tests not only should be loosely coupled with the code. Our tests ARE loosely coupled with the code.
+
+People refer to that specific usage of TDD as BDD, and have made some changes to avoid "going back to TDD" in this context:
+- We don't say we are writing tests. Instead, we write specifications.
+- We don't test the code; we confirm its behavior.
+- We have limited freedom in the test structure, building tests around "given, when, then" keywords.
+- And in my opinion, the key is that our tests are loosely coupled with the code.
 
 # Summary
 1. BDD is TDD++, when you use BDD you will avoid common TDDs mistakes.
@@ -100,8 +99,8 @@ Peoples named that usage of TDD as BDD. They also made some changes to avoid "go
 
 ## How define HTTP calls between microservices in BDD tests
 
-First, lets simplify our case. Imagine that we have two modules in the same application: Module `producer` and module `consumer`. The relation is that `consumer` is using `producer` module. From our module definition, they communicate via public API. In the configuration class of the `consumer` module we must pass reference to `producer` module facade. In the unit tests we mock that facade.
+First, let's simplify our case. Imagine that we have two modules in the same application: `producer` and `consumer`. The relation is that `consumer` is using the `producer` module. According to our module definition, they communicate via the public API. In the configuration class of the `consumer` module, we must pass a reference to the `producer` module facade. In the unit tests, we mock that facade.
 
-Now, we take out `producer` module from our application and make it standalone application. We expose `producer` public API methods via REST endpoints. What happens to our `consumer` module? Let's delete all `producer` code apart from its public API (facade class + DTO classess). Our unit tests still compiles. Obvioulsy, application doesn't work, because `producer` module is not implemented. Now we can implement this `producer` module as HTTP client of real `producer` application. Implementation of this `producer` client module is driven by integration tests. It makes sense, because this module don't have any business logic.
+Now, let's take the `producer` module out of our application and make it a standalone application. We expose the `producer` public API methods via REST endpoints. What happens to our `consumer` module? Let's delete all the `producer` code apart from its public API (facade class + DTO classes). Our unit tests still compile. Obviously, the application doesn't work because the `producer` module is not implemented. Now we can implement this `producer` module as an HTTP client of the real `producer` application. The implementation of this `producer` client module is driven by integration tests. It makes sense because this module doesn't have any business logic.
 
-This `producer` client module is fake module. Good code doesn't lie. Our `consumer` module can absorb `producer` client module. Then producer facade become producer adapter. It is important to notice that old producer module DTOs became part of `consumer` module. From this time, they don't have to reflect real DTOs of new `producer` public API. Necessary mappings should be performed in adapter implementation. From now, our compiler is no longer checking if `consumer` application integrates with `producer` application. The relation between them should be described by contracts and it should be verified via contract tests (I'll write another article about them).
+This `producer` client module is a fake module. Good code doesn't lie. Our `consumer` module can absorb the `producer` client module. Then, the producer facade becomes the producer adapter. It is important to notice that old producer module DTOs became part of the `consumer` module. From this time, they don't have to reflect the real DTOs of the new `producer` public API. Necessary mappings should be performed in the adapter implementation. From now on, our compiler is no longer checking if the `consumer` application integrates with the `producer` application. The relation between them should be described by contracts, and it should be verified via contract tests (you can learn about contract tests in my other article on [Contract Tests]({% post_url /articles/2023-04-22-contract-tests %})).
