@@ -22,8 +22,6 @@ Worse if developer after writing the code goes on holidays. Then he comes back "
 
 But worst if developer after writing the code dies unexpectedly and someone else must write those unit tests.
 
-Here's a corrected version:
-
 The other problem with this approach is that the written code is not meant to be testable. The developer focuses on how to solve the problem, not how to write a unit test for the solution. This leads to a situation where testing may be tricky. You probably need to experience this to understand it.
 
 On the other hand, specifying what the test should verify may be tricky too.
@@ -40,8 +38,6 @@ The real problem with this approach is the strong binding between code and tests
 As Dave Farley noticed, these problems are not directly connected with TDD. We can and should use TDD in a way that does not cause these problems. How? Don't test classes. Instead, test modules.
 
 # Module
-
-Here is the corrected text:
 
 And what is a module then? Every software engineering guru has his own definition of a module. I especially like Jakub Nabrdalik's definition:
 
@@ -68,7 +64,6 @@ The facade class serves as the module's entry point, defining its public API. Th
 What about the DAO layer? The unit test boat needs a fast instance of the module, one that doesn't involve I/O. For example, it could provide a module instance with an in-memory DAO, without reading files, and so on. The persistence layer should not be implemented here. In the case where we want to implement our microservice that uses other microservices' REST APIs, I'll describe my solution later<sup>[See Appendix 1](#how-define-http-calls-between-microservices-in-bdd-tests)</sup>.
 
 # BDD
-Here's a suggested revision for grammar and clarity:
 
 Because we cannot access the internal state of the module, we can only test its behavior. This is a crucial aspect of Behavior Driven Development, as we treat our module as a black box, since everything important is hidden. In the tests, we are not concerned with how things are done; we only verify if the module behaves as expected. With this approach, we cannot make the mistakes we previously discussed.
 
