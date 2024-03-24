@@ -1,0 +1,1 @@
+docker run --rm -v /${PWD}:/srv/jekyll -v /${PWD}/vendor/bundle:/usr/gem -p 4000:4000 -p 35729:35729 -it jekyll/builder:4.2.2 bundle install
