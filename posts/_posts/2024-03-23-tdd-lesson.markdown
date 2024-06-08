@@ -67,7 +67,7 @@ class TaskManagingSpecification extends Specification {
 }
 ```
 
-I saw this approach in many projects (and I was writting tests like that too): test class and interactions with different class. But, the `taskRespository` is only interface here, so naturally, we're defining a mock for it.
+I saw this approach in many projects (and I was writting tests like that too) about: testing class methods and interactions with different classes.
 
 We didn't written any production code yet. That's one of the TDD principle. Test first. Now, let this drive our code creation. 
 
@@ -217,7 +217,38 @@ public interface TaskRepository {
 
 Nothing challenging so far. 
 
+Później dodajemy metodę closeTask - wyszukuje zadanie po jego id. Jeżeli nie istnieje to wyrzuca wyjątek. Jeżeli istnieje to je usuwa.
 
-Później dodajemy metodę closeTask - wyszukuje zadanie po 
+Jaki refactor, który zmieni sygnatury metod?
 
-Później jakiś refactor - wydzielenie logiki do osobnej klasy
+### 3. Task can have subtasks
+
+Test:
+
+```groovy
+class TaskManagingSpecification extends Specification {
+    ...
+
+    def "creating a subtask"() {
+        given: "a 'TODO' task exists"
+        taskRepository.findById(1) >> new Task(1, "TODO")
+
+        when: "I add the 'FIXME' subtask to 'TODO' task"
+        taskManagerFacade.createSubtask(new SubtaskCreateDTO(1, "FIXME"))
+
+        then: "the 'TODO' task is saved with the new 'FIXME' subtask"
+        1 * taskRepository.save(new Task(1, "TODO", List.of(new Task(null, "FIXME"))))
+    }
+
+    def "fetching a task with subtask"() {
+        given: "'TODO' task has 'FIXME' subtask"
+        taskRepository.findById(1) >> new Task(1, "TODO", List.of(new Task(2, "FIXME")))
+
+        when: "I add the 'FIXME' subtask to 'TODO' task"
+        taskManagerFacade.createSubtask(new SubtaskCreateDTO(1, "FIXME"))
+
+        then: "the 'TODO' task is saved with the new 'FIXME' subtask"
+        tasks == [new TaskReadDTO(1, "TODO", [new TaskReadDTO(2, "FIXME")])]
+    }
+}
+```
